@@ -63,6 +63,13 @@ body {
   opacity: 0;
   transform: scale(0.96);
   animation: sofiaReveal 1.4s ease-out forwards;
+
+}
+@media (max-width: 600px) {
+  .nombre {
+    font-size: 3rem;
+    letter-spacing: 0.08em;
+  }
 }
 .section h2 {
   font-family: var(--font-title);
@@ -165,10 +172,12 @@ body {
 /* PORTADA */
 .hero {
   position: relative;
- 
-  overflow: hidden;
+  height: 100vh;
   min-height: 100vh;
-  padding-bottom: 40px;
+  overflow: hidden;
+
+  padding-bottom: 0;   /* ← importante */
+  margin-bottom: 0;    /* ← importante */
 }
 
 /* VIDEO SOLO DENTRO DE LA PORTADA */
@@ -238,6 +247,7 @@ section {
 
 #evento {
   position: relative;
+  padding-top: 0;
   min-height: 100vh;
   background:
     linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
@@ -261,19 +271,27 @@ section {
 ========================= */
 
 .evento-card {
-  background: rgba(15, 15, 15, 0.85);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 18px;
-  padding: 3.5rem 3rem;
+  background: linear-gradient(
+    180deg,
+    rgba(20,20,20,0.9),
+    rgba(10,10,10,0.95)
+  );
+
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 22px;
+
+  padding: 3.2rem 2.6rem;
   text-align: center;
-  color: #f2f2f2;
+  color: var(--white-soft);
+
   width: 100%;
   max-width: 520px;
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-}
 
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.65);
+
+  backdrop-filter: blur(6px);
+}
 /* GIF / ICONO */
 .icon-gif {
   width: 80px;
@@ -283,11 +301,20 @@ section {
 
 /* TÍTULO */
 .evento-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.6rem;
-  letter-spacing: 3px;
-  margin-bottom: 1.2rem;
-  color: var(--white-soft);
+  font-family: var(--font-title);
+  font-size: 2.4rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 1.4rem;
+
+  background: linear-gradient(
+    180deg,
+    var(--white-soft),
+    #cfcfcf
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 /* TEXTO */
@@ -302,21 +329,48 @@ section {
 /* LINK MAPS */
 .evento-card a {
   display: inline-block;
-  padding: 0.7rem 1.8rem;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.6);
+  padding: 0.8rem 2.2rem;
+  border-radius: 40px;
+
+  background: transparent;
+  border: 1px solid rgba(201,255,234,0.6);
+
   color: var(--white-soft);
   text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+
   transition: all 0.3s ease;
 }
 
 .evento-card a:hover {
-  background: var(--white-soft);
-  color: #000;
+  background: rgba(201,255,234,0.15);
+}
+.evento-info {
+  display: grid;
+  gap: 20px;
+  margin: 2.2rem 0;
 }
 
+.evento-info strong {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: #9fffdc;
+  margin-bottom: 6px;
+}
+
+.evento-info p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.evento-info strong {
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  color: #9fffdc;
+}
 /* =========================
    RESPONSIVE
 ========================= */
