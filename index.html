@@ -10,6 +10,22 @@
 </head>
 
 <body>
+  <!-- PANTALLA DE INGRESO CON MÚSICA -->
+<div id="music-gate" class="music-gate">
+  <div class="music-box">
+    <p class="music-title">¿Cómo querés ingresar?</p>
+
+    <div class="music-buttons">
+      <button onclick="enterWithMusic()">Con música</button>
+      <button class="secondary" onclick="enterWithoutMusic()">Sin música</button>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+  <source src="img/SpotiDownloader.com - GUAYA - Lucho RK.mp3" type="audio/mpeg">
+</audio>
 <!-- HEADER -->
  <header class="invite-header">
   <span class="header-title">XV Sofía</span>
@@ -274,7 +290,20 @@ Jugá y descubrilo 💚
 
   <script src="script.js"></script>
 
-  
+  <script>
+  const gate = document.getElementById("music-gate");
+  const music = document.getElementById("bg-music");
+
+  function enterWithMusic() {
+    music.volume = 0.6;
+    music.play();
+    gate.style.display = "none";
+  }
+
+  function enterWithoutMusic() {
+    gate.style.display = "none";
+  }
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".slider-track");
