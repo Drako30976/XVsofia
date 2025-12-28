@@ -72,15 +72,56 @@ body {
   }
 }
 
+/* PANTALLA DE INGRESO */
+/* Ajustes para móviles */
+@media (max-width: 600px) {
+
+  /* Pantalla de ingreso */
+  .music-box {
+    padding: 30px 20px;
+    max-width: 90%;
+  }
+
+  .music-title {
+    font-size: 1.4rem;
+  }
+
+  .music-buttons button {
+    font-size: 0.85rem;
+    padding: 12px;
+  }
+
+  /* Video de fondo */
+  .intro-video {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .intro-content {
+    font-size: 1.5rem;
+    padding: 16px;
+  }
+
+  /* Botón fijo de audio */
+  .audio-toggle {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
 .music-gate {
   position: fixed;
   inset: 0;
   background: radial-gradient(circle, #001a12, #000);
-  z-index: 9999;
-
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 .music-box {
@@ -92,15 +133,22 @@ body {
 .music-title {
   font-family: var(--font-title);
   font-size: 1.6rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: var(--white-soft);
   letter-spacing: 0.12em;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.8s forwards;
+  animation-delay: 0.5s;
 }
 
 .music-buttons {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  opacity: 0;
+  animation: slideIn 0.8s forwards;
+  animation-delay: 1s;
 }
 
 .music-buttons button {
@@ -108,66 +156,28 @@ body {
   border-radius: 30px;
   border: none;
   cursor: pointer;
-
   font-size: 0.9rem;
   letter-spacing: 0.1em;
-
   background: linear-gradient(135deg, #7cffb2, #4fd1c5);
   color: #000;
+  transition: all 0.3s ease;
 }
 
 .music-buttons button.secondary {
   background: transparent;
-  border: 1px solid var(--white-soft);
-  color: var(--white-soft);
+  border: 1px solid #fff;
+  color: #fff;
 }
 
-
-.audio-toggle {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  z-index: 1100;
+.music-buttons button:hover {
+  transform: scale(1.05);
 }
 
-.audio-toggle.hidden {
-  display: none;
-  top: 14px;
-  right: 14px;
-}
-@media (max-width: 480px) {
-  .audio-toggle {
-    top: 64px; /* baja apenas debajo del header */
-  }
-}
-
-/* ÍCONO */
-.audio-toggle .icon {
-  width: 14px;
-  height: 14px;
-  border-left: 2px solid var(--white-soft);
-  border-right: 2px solid var(--white-soft);
-}
-
-/* ESTADO ACTIVO (sonando) */
+/* VIDEO DE FONDO */
 .intro {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
+  position: relative;
+  z-index: 1;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -186,39 +196,52 @@ body {
 .intro-content {
   position: absolute;
   inset: 0;
-  z-index: 2;
-
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 32px;
-
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 2rem;
   text-align: center;
-  padding: 24px;
 }
 
-.intro-question {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
-  color: #fff;
-}
-
-.intro-buttons button {
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: transparent;
-  color: #fff;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
+/* BOTÓN FIJO DE AUDIO */
+.audio-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  z-index: 1100;
+  font-size: 18px;
 }
 
-.intro-buttons button:hover {
-  background: rgba(255,255,255,0.15);
+.audio-toggle.hidden {
+  display: none;
+}
+
+.audio-toggle.active {
+  color: #4fd1c5;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /* HEADER */
 .invite-header {

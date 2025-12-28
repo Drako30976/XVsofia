@@ -10,34 +10,39 @@
 </head>
 
 <body>
-  <!-- PANTALLA DE INGRESO CON MÚSICA -->
+<!-- PANTALLA DE INGRESO CON MÚSICA -->
+<!-- PANTALLA DE INGRESO -->
+<section id="music-gate" class="music-gate">
+  <div class="music-box">
+    <p class="music-title">Bienvenidos a la invitación de XV años de Sofía</p>
+    <p class="music-title">¿Querés ingresar con música?</p>
+
+    <div class="music-buttons">
+      <button id="enterWithMusic">Con música</button>
+      <button id="enterWithoutMusic" class="secondary">Sin música</button>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO DE FONDO -->
 <section class="intro">
   <video autoplay muted loop playsinline class="intro-video">
     <source src="img/2222.mp4" type="video/mp4">
   </video>
-
   <div class="intro-overlay"></div>
-
   <div class="intro-content">
-    <p class="intro-question">Bienvenidos a la invitacion de XV años de Sofia </p> 
-    <p class="intro-question">¿Querés ingresar con música? </p>
-    
-
-    <div class="intro-buttons">
-      <button id="enterWithMusic">Con música</button>
-      <button id="enterWithoutMusic">Sin música</button>
-    </div>
+    <p class="intro-question">Bienvenidos a la invitación de XV años de Sofía</p>
   </div>
 </section>
+
 <!-- AUDIO -->
 <audio id="bg-music" loop>
   <source src="img/SpotiDownloader.com - GUAYA - Lucho RK.mp3" type="audio/mpeg">
 </audio>
 
-<!-- BOTÓN AUDIO -->
-<button id="audio-toggle" class="audio-toggle hidden" aria-label="Audio">
-  <span class="icon"></span>
-</button>
+<!-- BOTÓN FIJO DE AUDIO -->
+<button id="audio-toggle-fixed" class="audio-toggle hidden" aria-label="Audio">🎵</button>
+
 <!-- HEADER -->
  <header class="invite-header">
   <span class="header-title">XV Sofía</span>
@@ -304,35 +309,48 @@ Jugá y descubrilo 💚
 
   <script src="script.js"></script>
 
-  <script>
-  const gate = document.getElementById("music-gate");
-  const music = document.getElementById("bg-music");
-  const toggle = document.getElementById("audio-toggle");
+<script>
+ const gate = document.getElementById("music-gate");
+const music = document.getElementById("bg-music");
+const toggleFixed = document.getElementById("audio-toggle-fixed");
 
-  function enterWithMusic() {
-    music.volume = 0.6;
-    music.play();
-    gate.style.display = "none";
-    toggle.classList.remove("hidden");
-  }
-
-  function enterWithoutMusic() {
-    gate.style.display = "none";
-    toggle.classList.remove("hidden");
-  }
-
- toggle.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-    toggle.classList.add("active");
-  } else {
-    music.pause();
-    toggle.classList.remove("active");
-  }
+document.getElementById("enterWithMusic").addEventListener("click", () => {
+  music.volume = 0.6;
+  music.play();
+  gate.style.display = "none";
+  toggleFixed.classList.remove("hidden");
+  toggleFixed.classList.add("active");
 });
 
+document.getElementById("enterWithoutMusic").addEventListener("click", () => {
+  gate.style.display = "none";
+  toggleFixed.classList.remove("hidden");
+});
 
-</script>
+toggleFixed.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    toggleFixed.classList.add("active");
+  } else {
+    music.pause();
+    toggleFixed.classList.remove("active");
+  }
+});document.getElementById("enterWithMusic").addEventListener("click", () => {
+  music.volume = 0.6;
+  music.play().catch(() => {
+    console.log("Toca la pantalla para activar el audio en móviles");
+  });
+  gate.style.display = "none";
+  toggleFixed.classList.remove("hidden");
+  toggleFixed.classList.add("active");
+});
+
+document.getElementById("enterWithoutMusic").addEventListener("click", () => {
+  gate.style.display = "none";
+  toggleFixed.classList.remove("hidden");
+});
+      
+  </script>
 
 
 
