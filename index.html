@@ -28,8 +28,8 @@
 </audio>
 
 <!-- BOTÓN AUDIO -->
-<button id="audio-toggle" class="audio-toggle hidden">
-  🔊
+<button id="audio-toggle" class="audio-toggle hidden" aria-label="Audio">
+  <span class="icon"></span>
 </button>
 <!-- HEADER -->
  <header class="invite-header">
@@ -312,16 +312,21 @@ Jugá y descubrilo 💚
     toggle.classList.remove("hidden");
   }
 
-  toggle.addEventListener("click", () => {
-    if (music.paused) {
-      music.play();
-      toggle.textContent = "🔊";
-    } else {
-      music.pause();
-      toggle.textContent = "🔇";
-    }
-  });
+ toggle.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    toggle.classList.add("active");
+  } else {
+    music.pause();
+    toggle.classList.remove("active");
+  }
+});
+
+
 </script>
+
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".slider-track");
