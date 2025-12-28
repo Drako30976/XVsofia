@@ -26,6 +26,11 @@
 <audio id="bg-music" loop>
   <source src="img/SpotiDownloader.com - GUAYA - Lucho RK.mp3" type="audio/mpeg">
 </audio>
+
+<!-- BOTÓN AUDIO -->
+<button id="audio-toggle" class="audio-toggle hidden">
+  🔊
+</button>
 <!-- HEADER -->
  <header class="invite-header">
   <span class="header-title">XV Sofía</span>
@@ -293,16 +298,29 @@ Jugá y descubrilo 💚
   <script>
   const gate = document.getElementById("music-gate");
   const music = document.getElementById("bg-music");
+  const toggle = document.getElementById("audio-toggle");
 
   function enterWithMusic() {
     music.volume = 0.6;
     music.play();
     gate.style.display = "none";
+    toggle.classList.remove("hidden");
   }
 
   function enterWithoutMusic() {
     gate.style.display = "none";
+    toggle.classList.remove("hidden");
   }
+
+  toggle.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      toggle.textContent = "🔊";
+    } else {
+      music.pause();
+      toggle.textContent = "🔇";
+    }
+  });
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
